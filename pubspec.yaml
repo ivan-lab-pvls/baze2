@@ -39,7 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.1.1
   flutter_inappwebview: ^5.7.2+3
-  onesignal_flutter: ^5.0.0
+  # onesignal_flutter: ^5.0.0
   appsflyer_sdk: ^6.12.2
   in_app_review: ^2.0.6
   dio: ^5.3.2

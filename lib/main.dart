@@ -25,9 +25,9 @@ void main() {
 
   AppsflyerSdk appsflyerSdk = AppsflyerSdk(appsFlyerOptions);
 
-  OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
-  OneSignal.initialize("f7e66704-ad32-4080-b759-6a22a7fe2116");
-  OneSignal.Notifications.requestPermission(true);
+  // OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  // OneSignal.initialize("f7e66704-ad32-4080-b759-6a22a7fe2116");
+  // OneSignal.Notifications.requestPermission(true);
 
   runApp(MyApp(appsflyerSdk));
 }
