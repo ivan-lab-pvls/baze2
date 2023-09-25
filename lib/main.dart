@@ -3,7 +3,7 @@ import 'package:blaze_cafe/router.dart';
 import 'package:blaze_cafe/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:onesignal_flutter/onesignal_flutter.dart';
+// import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:provider/provider.dart';
 
 void main() {
