@@ -1,15 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:blaze_cafe/router.dart';
 import 'package:blaze_cafe/utils/constants.dart';
 import 'package:blaze_cafe/utils/context_ext.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:go_router/go_router.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
@@ -82,59 +79,6 @@ class _InitialScreenState extends State<InitialScreen> {
     );
   }
 
-  Future<String> thordx() async {
-    try {
-      http.Response response = await http.get(Uri.parse(Constants.info));
-
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        String darx = data['org'];
-        contactx(listaz, darx);
-        return darx;
-      } else {
-        return '';
-      }
-    } catch (error) {
-      return '';
-    }
-  }
-
-  bool contactx(List<String> array, String inputString) {
-    List<String> words = inputString.split(' ');
-    List<String> arrayItems = [];
-    for (String item in array) {
-      arrayItems.addAll(item.split(', '));
-    }
-    for (String word in words) {
-      for (String arrayItem in arrayItems) {
-        if (arrayItem.toLowerCase().contains(word.toLowerCase())) {
-          chekxasx[0] = false;
-          return false;
-        } else {
-          chekxasx[0] = true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  Future<List<String>> secindx() async {
-    try {
-      final Response response = await dio.get(Constants.dataNews);
-      if (response.statusCode == 200) {
-        List<dynamic> data = response.data as List<dynamic>;
-        listaz = data.map((item) => item['dataNews'].toString()).toList();
-
-        return listaz;
-      } else {
-        return [];
-      }
-    } catch (error) {
-      return [];
-    }
-  }
-
   Future<void> rateApp() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool alreadyRated = prefs.getBool('already_rated') ?? false;
@@ -175,11 +119,6 @@ class _InitialScreenState extends State<InitialScreen> {
         },
       ),
     );
-
-    await forstx();
-    await secindx();
-    await thordx();
-
     await Future.delayed(const Duration(seconds: 2));
     rateApp();
 
@@ -208,7 +147,7 @@ class _InitialScreenState extends State<InitialScreen> {
         }
 
         if (snapshot.data ?? false) {
-          return ShowingScreen(p: ll);
+          return const SplashScreen();
         }
 
         return const SplashScreen();
@@ -232,24 +171,24 @@ class SplashScreen extends StatelessWidget {
   }
 }
 
-class ShowingScreen extends StatelessWidget {
-  const ShowingScreen({
-    super.key,
-    required this.p,
-  });
-  final String p;
+// class ShowingScreen extends StatelessWidget {
+//   const ShowingScreen({
+//     super.key,
+//     required this.p,
+//   });
+//   final String p;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: InAppWebView(
-          initialUrlRequest: URLRequest(
-            url: Uri.parse(p),
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SafeArea(
+//         bottom: false,
+//         child: InAppWebView(
+//           initialUrlRequest: URLRequest(
+//             url: Uri.parse(p),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
